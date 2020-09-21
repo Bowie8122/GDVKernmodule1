@@ -9,19 +9,30 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     Bullet MyB;
     PlayerScript MyPS = new PlayerScript();
-    PlayerStateMachine MyPFSM = new PlayerStateMachine();
+    //PlayerStateMachine MyPFSM;// = new PlayerStateMachine();
+    InputManager MyIM = new InputManager();
+
+    [Header("Enemy")]
+    public GameObject enemy;
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        //MyPS = GetComponent < PlayerScript>();
+    }
     void Start()
     {
-        MyPS.PlayerObject(playerPrefab);
-        MyB = new Bullet(enemyPrefab, bulletPrefab);
-        MyPFSM.ChangePlayerState(new PlayerMoveState());
+        StateMachine.ChangeState(new SpawnState());
+        MyPS.PlayerObject(playerPrefab, MyB);
+        //MyPFSM.ChangePlayerState(new PlayerIdleState());
+        MyB = new Bullet(enemyPrefab, bulletPrefab, MyPS);
+        EventManager.SubscribeToEvent(EventEnum.ON_SHOOT, MyB.SpawnBullet);
+        //MyPFSM.ChangePlayerState(new PlayerMoveState());
     }
-
-    // Update is called once per frame
     void Update()
     {
+        MyIM.InputUpdate();
         MyB.BulletUpdate();
-        MyPFSM.RunPlayerState();
+        StateMachine.RunState();
     }
 }

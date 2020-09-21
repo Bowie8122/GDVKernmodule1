@@ -238,6 +238,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1140879793398904349, guid: 29b64b58bc1fb0a48ace8ad03070feee, type: 3}
   bulletPrefab: {fileID: 7363458883994772388, guid: 54b0fa58bf21b6943ba62f07c8bc11e6, type: 3}
   playerPrefab: {fileID: 7742623211073675275, guid: c32e498495c910c4cbf1eb0af569f83d, type: 3}
+  enemy: {fileID: 4793057169610742682, guid: 5705174c09bb20643ba383eefe772461, type: 3}
 --- !u!4 &1723710395
 Transform:
   m_ObjectHideFlags: 0
